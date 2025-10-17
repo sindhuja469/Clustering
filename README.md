@@ -11,7 +11,8 @@ The goal is to analyze and classify universities based on performance indicators
 - Determine the most influential features driving university performance.
 
 ### Dataset 
-The dataset used for this project is available on Kaggle:  
+The dataset csv file used for this project is available on this repository 
+and on Kaggle:  
 👉 [Kaggle Dataset Link](https://www.kaggle.com/datasets/akashbommidi/2026-qs-world-university-rankings) 
 
 ---
