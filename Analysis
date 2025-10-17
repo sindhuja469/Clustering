@@ -1,0 +1,89 @@
+#  Results Analysis and Interpretation
+
+## 1. Exploratory Data Analysis (EDA)
+The initial exploration of the QS World University Rankings dataset revealed:
+- The dataset included **1,501 universities** and **30 attributes**.
+- Missing data occurred mainly in *International Faculty Ratio (IFR)*, *International Student Ratio (ISR)*, and *Sustainability Score (SUS)* columns.
+- **Academic Reputation (AR SCORE)** and **Employer Reputation (ER SCORE)** were highly skewed toward top-performing universities.
+- **Boxplots** revealed outliers in research and faculty metrics, indicating performance variation across institutions.
+
+**Interpretation:**  
+Top-ranked universities consistently achieve high reputation scores, while mid- and lower-ranked universities show variability, especially in research and internationalization performance.
+
+---
+
+## 2. K-Means Clustering
+
+### Elbow & Silhouette Method
+- The **Elbow Method** indicated 3–4 optimal clusters.  
+- Silhouette scores for various `k` values:  
+  - k = 2 → 0.39  
+  - k = 3 → 0.31  
+  - k = 4 → 0.28  
+
+### PCA Visualization
+- At **k = 4**, clusters overlapped significantly.  
+- At **k = 3**, clusters were better separated in the PCA plot.
+
+**Interpretation:**  
+Universities naturally grouped into **three meaningful clusters**:
+1. **Elite Universities:** Top global performers with strong academic, employer, and research metrics.  
+2. **Strong Performers:** Balanced performance across all metrics with potential to improve in citations and international exposure.  
+3. **Emerging Institutions:** Developing universities with lower research or internationalization scores.
+
+---
+
+## 3. Hierarchical Clustering
+Using **Agglomerative Clustering (Ward linkage)**:
+- The dendrogram revealed **3–4 primary clusters**, consistent with K-Means results.
+- Institutions with similar research and internationalization patterns tended to merge early in the hierarchy.
+
+**Interpretation:**  
+The hierarchical model validated the results of K-Means, confirming three stable clusters based on global performance metrics.
+
+---
+
+## 4. Random Forest Classification – Ranking Tier Prediction
+
+### Created Ranking Tiers:
+- 🥇 Top 100  
+- 🥈 101–300  
+- 🥉 301–600  
+- 🎓 601+  
+
+### Model Performance:
+| Metric | Validation Set | Test Set |
+|---------|----------------|----------|
+| **Accuracy** | 90% | 91% |
+| **Precision (601+ Tier)** | 0.94 | 0.93 |
+| **Recall (601+ Tier)** | 0.98 | 0.98 |
+| **Precision (Top 100)** | 1.00 | 1.00 |
+| **Recall (Top 100)** | 0.75 | 0.90 |
+
+**Interpretation:**  
+- The model achieved **excellent accuracy** and balance between precision and recall.  
+- It accurately identified **Top 100** and **601+** universities.  
+- Overlap between **101–300** and **301–600** tiers suggests similar performance characteristics among mid-ranked universities.
+
+---
+
+## 5. Feature Importance Analysis
+
+### Top 5 Influential Features:
+1. **Academic Reputation (AR SCORE)**  
+2. **Employer Reputation (ER SCORE)**  
+3. **Citations per Faculty (CPF SCORE)**  
+4. **Faculty/Student Ratio (FSR SCORE)**  
+5. **International Faculty Ratio (IFR SCORE)**  
+
+**Interpretation:**  
+Reputation metrics dominate ranking outcomes, confirming their central role in global university prestige.  
+However, research output and teaching quality (CPF and FSR) also significantly contribute to rank differentiation.
+
+---
+
+## 6. Optimized Random Forest Model (GridSearchCV)
+
+### Best Parameters:
+```python
+{'max_depth': 10, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200}
