@@ -87,3 +87,18 @@ However, research output and teaching quality (CPF and FSR) also significantly c
 ### Best Parameters:
 ```python
 {'max_depth': 10, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200}
+
+- The optimized model achieved 90% accuracy, improving generalization.
+
+- Confusion matrices showed fewer misclassifications, particularly in the middle ranking tiers.
+
+### Overall Conclusion
+- Clustering Analysis: Revealed three natural university groups, illustrating global performance segmentation.
+- Classification Model: Achieved high accuracy, effectively predicting ranking tiers.
+- Key Drivers: Academic and employer reputation are the strongest determinants of rank.
+- Research Insight: Combining unsupervised and supervised learning offers a comprehensive, data-driven understanding of global university performance.
+---
+### Summary Insights:
+The combination of clustering and predictive modeling provides a strong analytical foundation for understanding global university competitiveness.
+Institutions can use these findings to benchmark their standing and identify areas for strategic improvement in research, reputation, and internationalization.
+
